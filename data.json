@@ -1,0 +1,98 @@
+[
+    {
+        "file": "a1.png",
+        "id": "0a4a79cb-b06d-4cb1-883d-549a1e3b66d7",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "a2.png",
+        "id": "a73c1d19-f32d-4aff-b470-cea4e792406a",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "a3.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06f",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "a4.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06g",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "b1.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06h",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "b2.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06i",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "b3.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06j",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "b4.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06k",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "c1.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06l",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "c2.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06m",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "c3.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06n",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "c4.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06o",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "d1.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06p",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "d2.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06q",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "d3.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06r",
+        "empty": false,
+        "canMove": false
+    },
+    {
+        "file": "d4.png",
+        "id": "2c43306e-5b44-4ff8-8753-33c35adbd06s",
+        "empty": true,
+        "canMove": false
+    }
+]
