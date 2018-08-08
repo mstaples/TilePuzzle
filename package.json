@@ -1,6 +1,6 @@
 {
   "name": "tiles_puzzle",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": "https://github.com/mstaples",
   "scripts": {
     "go": "open http://localhost:3000; npm run server",
