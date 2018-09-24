@@ -30,7 +30,7 @@ window.client = (function() {
   }
 
   function checkSuccess(tiles, success) {
-    for (var i = 0; i < success.length; i++) {
+    for (let i = 0, len = success.length; i < len; i++) {
       var match = tiles.filter(tile => tile.id == success[i].id);
       match = match.pop();
       if (match.row != success[i].row || match.col != success[i].col) {
@@ -83,24 +83,21 @@ window.client = (function() {
   }
 
   function updateOrder(array) {
-    var columnSorted = { a: [], b: [], c: [], d: [] };
+    const sortedColumns = { a: [], b: [], c: [], d: [] };
     array.map(tile => {
-      columnSorted[tile.col][tile.row] = tile;
+      sortedColumns[tile.col][tile.row] = tile;
     });
-    var updatedArray = [];
-    for (var key in columnSorted) {
-      // skip loop if the property is from prototype
-      if (!columnSorted.hasOwnProperty(key)) continue;
-
-      var tiles = columnSorted[key];
-      var ordered = [];
-      for (var id in tiles) {
-        // skip loop if the property is from prototype
-        if (!tiles.hasOwnProperty(id)) continue;
-        updatedArray.push(tiles[id]);
+    // Iterating through an object uses arbitrary order, so we use an array of
+    // column names for our loop.
+    const columnNames = ['a', 'b', 'c', 'd'];
+    const updatedArray = [];
+    for (const column of columnNames) {
+      for (const tile of sortedColumns[column]) {
+        if (tile) {
+          updatedArray.push(tile);
+        }
       }
     }
-
     return updatedArray;
   }
 
