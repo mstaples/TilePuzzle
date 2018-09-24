@@ -101,10 +101,10 @@ window.client = (function() {
   }
 
   function setMoves(array, emptyTile) {
-    var movable = getMovablePositions(emptyTile);
+    const movable = getMovablePositions(emptyTile);
 
     return array.map(tile => {
-      var position = tile.col + tile.row;
+      const position = tile.col + tile.row;
       tile.canMove = movable.includes(position);
       return tile;
     });
