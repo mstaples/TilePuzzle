@@ -20,40 +20,35 @@ class PuzzleDashboard extends React.Component {
   };
 
   makeMove = clickedTileId => {
-    var emptyTile = this.state.tiles.filter(tile => tile.empty == true).pop();
-    var clickedTile = this.state.tiles
-      .filter(tile => tile.id == clickedTileId)
-      .pop();
-    var complete = false;
+    const emptyTile = this.state.tiles.find(tile => tile.empty);
+    const clickedTile = this.state.tiles.find(tile => tile.id == clickedTileId);
 
-    var tempState = {
-      tiles: this.state.tiles.map(tile => {
-        if (tile.id === clickedTileId) {
-          return Object.assign({}, tile, {
-            col: emptyTile.col,
-            row: emptyTile.row
-          });
-        } else if (tile.id === emptyTile.id) {
-          return Object.assign({}, tile, {
-            col: clickedTile.col,
-            row: clickedTile.row
-          });
-        } else {
-          return tile;
-        }
-      })
-    };
+    const tempTiles = this.state.tiles.map(tile => {
+      if (tile.id === clickedTileId) {
+        return Object.assign({}, tile, {
+          col: emptyTile.col,
+          row: emptyTile.row
+        });
+      } else if (tile.id === emptyTile.id) {
+        return Object.assign({}, tile, {
+          col: clickedTile.col,
+          row: clickedTile.row
+        });
+      } else {
+        return tile;
+      }
+    });
 
-    tempState = tempState.tiles;
-    emptyTile = Object.assign({}, emptyTile, {
+    const newEmptyTile = Object.assign({}, emptyTile, {
       col: clickedTile.col,
       row: clickedTile.row
     });
 
     client.getSuccess(success => {
-      complete = client.checkSuccess(tempState, success);
-      var updatedMovesTiles = client.updateMoves(tempState, emptyTile);
-      this.setState({ tiles: updatedMovesTiles, complete: complete });
+      this.setState({
+        tiles: client.updateMoves(tempTiles, newEmptyTile),
+        complete: client.checkSuccess(tempTiles, success)
+      });
     });
   };
 
