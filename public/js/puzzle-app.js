@@ -53,7 +53,6 @@ class PuzzleDashboard extends React.Component {
   };
 
   render() {
-    console.log('render state: ' + this.state.complete);
     if (this.state.complete) {
       return (
         <div className="ui four column centered grid">
@@ -73,79 +72,73 @@ class PuzzleDashboard extends React.Component {
   }
 }
 
-class Columns extends React.Component {
-  render() {
-    const colNames = ['a', 'b', 'c', 'd'];
-    var columnTiles = [];
-    colNames.map(column => {
-      columnTiles[column] = [];
-      this.props.tiles.map(tile => {
-        if (tile.col == column) {
-          columnTiles[column].push(tile);
-        }
-      });
+function Columns(props) {
+  const colNames = ['a', 'b', 'c', 'd'];
+  const columnTiles = [];
+  colNames.map(column => {
+    columnTiles[column] = [];
+    props.tiles.map(tile => {
+      if (tile.col == column) {
+        columnTiles[column].push(tile);
+      }
     });
-    const columns = colNames.map(name => {
-      return (
-        <Column
-          key={name}
-          id={name}
-          tiles={columnTiles[name]}
-          onMoveClick={this.props.onMoveClick}
+  });
+  return (
+    <div className="ui equal width center aligned padded grid">
+      {colNames.map(name => {
+        return (
+          <Column
+            key={name}
+            id={name}
+            tiles={columnTiles[name]}
+            onMoveClick={props.onMoveClick}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function Column(props) {
+  return (
+    <div className="four wide column" id={props.id}>
+      {props.tiles.map(tile => (
+        <Tile
+          key={tile.id}
+          id={tile.id}
+          file={tile.file}
+          col={tile.col}
+          canMove={tile.canMove}
+          onMoveClick={props.onMoveClick}
         />
-      );
-    });
-    return (
-      <div className="ui equal width center aligned padded grid">{columns}</div>
-    );
-  }
+      ))}
+    </div>
+  );
 }
 
-class Column extends React.Component {
-  render() {
-    const tiles = this.props.tiles.map(tile => (
-      <Tile
-        key={tile.id}
-        id={tile.id}
-        file={tile.file}
-        col={tile.col}
-        canMove={tile.canMove}
-        onMoveClick={this.props.onMoveClick}
-      />
-    ));
-    return (
-      <div className="four wide column" id={this.props.id}>
-        {tiles}
-      </div>
-    );
-  }
-}
-
-class Tile extends React.Component {
-  handleOnClick = () => {
-    this.props.onMoveClick(this.props.id);
+function Tile(props) {
+  const handleOnClick = () => {
+    props.onMoveClick(props.id);
   };
 
-  render() {
-    if (this.props.canMove) {
-      return (
-        <div className="ui centered card">
-          <div className="content">
-            <a href="#" onClick={this.handleOnClick}>
-              <img src={'../images/' + this.props.file} />
-            </a>
-          </div>
+  if (props.canMove) {
+    return (
+      <div className="ui centered card">
+        <div className="content">
+          <a href="#" onClick={handleOnClick}>
+            <img src={'../images/' + props.file} />
+          </a>
         </div>
-      );
-    } else {
-      return (
-        <div className="ui centered card">
-          <div className="content">
-            <img src={'../images/' + this.props.file} />
-          </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="ui centered card">
+        <div className="content">
+          <img src={'../images/' + props.file} />
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
