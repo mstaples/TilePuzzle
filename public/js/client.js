@@ -19,6 +19,9 @@ window.client = (function() {
   }
 
   function getSuccess(success) {
+    if (this.solution) {
+      return success(this.solution);
+    }
     return fetch('/api/tiles/solution', {
       headers: {
         Accept: 'application/json'
@@ -26,7 +29,10 @@ window.client = (function() {
     })
       .then(checkStatus)
       .then(parseJSON)
-      .then(success);
+      .then(solution => {
+        this.solution = solution;
+        success(this.solution);
+      });
   }
 
   function checkSuccess(tiles, success) {
