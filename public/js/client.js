@@ -45,7 +45,7 @@ window.client = (function() {
   }
 
   function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
+    if (response.ok) {
       return response;
     } else {
       const error = new Error(`HTTP Error ${response.statusText}`);
