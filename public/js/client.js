@@ -140,10 +140,10 @@ window.client = (function() {
   }
 
   function getMovablePositions(emptyTile) {
-    var rows = getActiveRows(emptyTile.row);
-    var columns = getActiveColumns(emptyTile.col);
-    var movablePositions = [];
-    columns.filter(colName => {
+    const rows = getActiveRows(emptyTile.row),
+      columns = getActiveColumns(emptyTile.col),
+      movablePositions = [];
+    columns.forEach(colName => {
       if (colName == emptyTile.col) {
         rows.map(each => {
           movablePositions.push(colName + each);
