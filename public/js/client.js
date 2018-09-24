@@ -14,8 +14,7 @@ window.client = (function() {
   }
 
   function updateMoves(tiles, emptyTile) {
-    tiles = updateOrder(tiles);
-    return setMoves(tiles, emptyTile);
+    return setMoves(updateOrder(tiles), emptyTile);
   }
 
   function getSuccess(success) {
@@ -37,13 +36,11 @@ window.client = (function() {
 
   function checkSuccess(tiles, success) {
     for (let i = 0, len = success.length; i < len; i++) {
-      var match = tiles.filter(tile => tile.id == success[i].id);
-      match = match.pop();
+      const match = tiles.filter(tile => tile.id == success[i].id)[0];
       if (match.row != success[i].row || match.col != success[i].col) {
         return false;
       }
     }
-
     return true;
   }
 
