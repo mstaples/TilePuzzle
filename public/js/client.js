@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 window.client = (function() {
+  const columnNames = ['a', 'b', 'c', 'd'];
   function getTiles(success) {
     return fetch('/api/tiles', {
       headers: {
@@ -88,7 +89,6 @@ window.client = (function() {
     });
     // Iterating through an object uses arbitrary order, so we use an array of
     // column names for our loop.
-    const columnNames = ['a', 'b', 'c', 'd'];
     const updatedArray = [];
     for (const column of columnNames) {
       for (const tile of sortedColumns[column]) {
@@ -128,16 +128,15 @@ window.client = (function() {
   }
 
   function getActiveRows(row) {
-    var possibleRows = [1, 2, 3, 4];
-    var actualRows = [row - 1, row, row + 1];
+    const possibleRows = [1, 2, 3, 4];
+    const actualRows = [row - 1, row, row + 1];
     return possibleRows.filter(row => actualRows.includes(row));
   }
 
   function getActiveColumns(column) {
-    var possibleCols = ['a', 'b', 'c', 'd'];
-    var index = possibleCols.indexOf(column);
-    var actualCols = [possibleCols[index - 1], column, possibleCols[index + 1]];
-    return possibleCols.filter(columnName => actualCols.includes(columnName));
+    const index = columnNames.indexOf(column);
+    const actualCols = [columnNames[index - 1], column, columnNames[index + 1]];
+    return columnNames.filter(columnName => actualCols.includes(columnName));
   }
 
   function getMovablePositions(emptyTile) {
