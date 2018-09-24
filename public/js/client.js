@@ -102,7 +102,6 @@ window.client = (function() {
 
   function setMoves(array, emptyTile) {
     const movable = getMovablePositions(emptyTile);
-
     return array.map(tile => {
       const position = tile.col + tile.row;
       tile.canMove = movable.includes(position);
@@ -142,16 +141,14 @@ window.client = (function() {
   function getMovablePositions(emptyTile) {
     const rows = getActiveRows(emptyTile.row),
       columns = getActiveColumns(emptyTile.col),
-      movablePositions = [];
-    columns.forEach(colName => {
+      movablePositions = columns.reduce((positions, colName) => {
       if (colName == emptyTile.col) {
-        rows.map(each => {
-          movablePositions.push(colName + each);
-        });
+        rows.forEach(each => positions.push(colName + each));
       } else {
-        movablePositions.push(colName + emptyTile.row);
+        positions.push(colName + emptyTile.row);
       }
-    });
+      return positions;
+    }, []);
     return movablePositions.filter(
       position => position != emptyTile.col + emptyTile.row
     );
