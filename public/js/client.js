@@ -122,21 +122,9 @@ window.client = (function() {
       } else {
         tile['col'] = 'd';
       }
-      tile['row'] = getNextRow(array, tile['col']);
-      array[index] = tile;
+      tile['row'] = (index % 4) + 1;
     });
-
     return array;
-  }
-
-  function getNextRow(tiles, column) {
-    var count = 0;
-    tiles.map(tile => {
-      if (tile.col == column) {
-        count++;
-      }
-    });
-    return count;
   }
 
   function getActiveRows(row) {
