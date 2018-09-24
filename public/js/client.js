@@ -61,10 +61,10 @@ window.client = (function() {
   }
 
   function shuffle(array) {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       temporaryValue,
-      randomIndex;
-    var emptyTile = {};
+      randomIndex,
+      emptyTile = {};
 
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -78,11 +78,7 @@ window.client = (function() {
         emptyTile = array[randomIndex];
       }
     }
-
-    array = setColumns(array);
-    array = setMoves(array, emptyTile);
-
-    return array;
+    return setMoves(setColumns(array), emptyTile);
   }
 
   function updateOrder(array) {
