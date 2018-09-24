@@ -35,9 +35,9 @@ window.client = (function() {
   }
 
   function checkSuccess(tiles, success) {
-    for (let i = 0, len = success.length; i < len; i++) {
-      const match = tiles.filter(tile => tile.id == success[i].id)[0];
-      if (match.row != success[i].row || match.col != success[i].col) {
+    for (const successTile of success) {
+      const match = tiles.find(tile => tile.id == successTile.id);
+      if (match.row != successTile.row || match.col != successTile.col) {
         return false;
       }
     }
